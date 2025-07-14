@@ -12,8 +12,8 @@ import { DashboardLayout } from "@/components/layout/DashboardLayout";
 import { KPICard } from "@/components/dashboard/KPICard";
 import { DashboardWidget } from "@/components/dashboard/DashboardWidget";
 import { ComplianceTable } from "@/components/dashboard/ComplianceTable";
-import { ComplianceChart } from "@/components/dashboard/ComplianceChart";
 import { Timeline } from "@/components/dashboard/Timeline";
+import { CSAScores } from "@/components/dashboard/CSAScores";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
@@ -73,21 +73,10 @@ const Index = () => {
 
         {/* Main Content Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {/* Left Column - Compliance Overview */}
+          {/* Left Column - Outstanding Items & Driver Stats */}
           <div className="lg:col-span-2 space-y-6">
-            <DashboardWidget title="Compliance Trends">
-              <ComplianceChart />
-            </DashboardWidget>
-
             <DashboardWidget title="Outstanding Items">
               <ComplianceTable />
-            </DashboardWidget>
-          </div>
-
-          {/* Right Column - Timeline & Quick Stats */}
-          <div className="space-y-6">
-            <DashboardWidget title="Upcoming Events">
-              <Timeline />
             </DashboardWidget>
 
             <Card>
@@ -116,46 +105,15 @@ const Index = () => {
                 </div>
               </CardContent>
             </Card>
+          </div>
 
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <TrendingUp className="h-5 w-5" />
-                  Performance Metrics
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="space-y-2">
-                  <div className="flex justify-between">
-                    <span className="text-sm">On-Time Completion</span>
-                    <span className="font-semibold">87%</span>
-                  </div>
-                  <div className="w-full bg-muted rounded-full h-2">
-                    <div className="bg-success h-2 rounded-full" style={{ width: "87%" }}></div>
-                  </div>
-                </div>
-                
-                <div className="space-y-2">
-                  <div className="flex justify-between">
-                    <span className="text-sm">Compliance Score</span>
-                    <span className="font-semibold">94%</span>
-                  </div>
-                  <div className="w-full bg-muted rounded-full h-2">
-                    <div className="bg-primary h-2 rounded-full" style={{ width: "94%" }}></div>
-                  </div>
-                </div>
+          {/* Right Column - Timeline & CSA Scores */}
+          <div className="space-y-6">
+            <DashboardWidget title="Upcoming Events">
+              <Timeline />
+            </DashboardWidget>
 
-                <div className="space-y-2">
-                  <div className="flex justify-between">
-                    <span className="text-sm">Risk Assessment</span>
-                    <span className="font-semibold">Low</span>
-                  </div>
-                  <div className="w-full bg-muted rounded-full h-2">
-                    <div className="bg-success h-2 rounded-full" style={{ width: "25%" }}></div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+            <CSAScores />
           </div>
         </div>
       </div>
