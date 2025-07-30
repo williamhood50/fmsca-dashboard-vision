@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { NavLink, useLocation } from "react-router-dom";
+import { Link, useLocation } from "wouter";
 import { 
   LayoutDashboard, 
   FileText, 
@@ -30,7 +30,7 @@ interface DashboardSidebarProps {
 
 export function DashboardSidebar({ className }: DashboardSidebarProps) {
   const [collapsed, setCollapsed] = useState(false);
-  const location = useLocation();
+  const [location] = useLocation();
 
   const toggleCollapse = () => setCollapsed(!collapsed);
 
@@ -70,13 +70,13 @@ export function DashboardSidebar({ className }: DashboardSidebarProps) {
       <nav className="flex-1 p-2">
         <ul className="space-y-1">
           {navigationItems.map((item) => {
-            const isActive = location.pathname === item.href;
+            const isActive = location === item.href;
             const Icon = item.icon;
 
             return (
               <li key={item.href}>
-                <NavLink
-                  to={item.href}
+                <Link
+                  href={item.href}
                   className={cn(
                     "flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors",
                     "hover:bg-accent hover:text-accent-foreground",
@@ -87,7 +87,7 @@ export function DashboardSidebar({ className }: DashboardSidebarProps) {
                 >
                   <Icon className="h-5 w-5 flex-shrink-0" />
                   {!collapsed && <span className="truncate">{item.title}</span>}
-                </NavLink>
+                </Link>
               </li>
             );
           })}
